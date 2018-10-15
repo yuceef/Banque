@@ -1,0 +1,108 @@
+<div class="container row mt-5">
+    <div class="col-md-6">
+        <div class="card text-center">
+            <div class="card-header">
+                Compte
+            </div>
+            <div class="card-body text-justify col-md-10 offset-md-1">
+                <div>
+                    <label>Code du client: </label>
+                    <strong>{{compte.client.codeClient}}</strong>
+                </div>
+                <div>
+                    <label>Nom du client: </label>
+                    <strong>{{compte.client.nomClient}}</strong>
+                </div>
+                <div>
+                    <label>Code du compte: </label>
+                    <strong>{{compte.codeCompte}}</strong>
+                </div>
+                <div>
+                    <label>Solde: </label>
+                    <strong>{{compte.solde}}</strong>
+                </div>
+                <div>
+                    <label>Date de la création: </label>
+                    <strong>{{compte.dateCreation}}</strong>
+                </div>
+                <div>
+                    <label>Créer par: </label>
+                    <strong>{{compte.employe.nomEmploye}}</strong>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-center">
+            <div class="card-header">
+                Faire une opération
+            </div>
+            <div class="text-justify card-body col-md-8 offset-md-2">
+                <h6>Type: </h6>
+                <p>
+                    <select class="form-control" ng-model="operationFaire">
+                        <option value="versement">Versement</option>
+                        <option value="retrait">Retrait</option>
+                    </select>
+                </p>
+                <h6>Montant: </h6>
+                <p>
+                    <input class="form-control" type="text" ng-model="montantFaire" required />
+                </p>
+                <div>
+                    <button class="btn btn-info" onclick="return confirm('Etes vous sure?')" ng-click="faireOperation()" >Réaliser</button>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mt-2 mb-5">
+        <div class="card text-center">
+            <div class="card-header">
+                Les opérations
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Montant</th>
+                            <th scope="col">Par</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="operation in operations.operations">
+                            <td>{{operation.numOperation}}</td>
+                            <td ng-if="operation.type_operation=='V'">Versement</td>
+                            <td ng-if="operation.type_operation=='R'">Retrait</td>
+                            <td>{{operation.montant}}</td>
+                            <td>{{operation.employe.nomEmploye}}</td>
+                            <td>{{operation.dateOperation}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item " ng-class="{disabled:pageOperations==0}">
+                        <a class="page-link" ng-click="getOperations(pageOperations-1)">Précédent</a>
+                        </li>
+                        <li ng-repeat="n in [] | range:operations.totalPages" class="page-item" ng-class="{active:n==pageOperations}"><a class="page-link" ng-click="getOperations(n)">{{1+n}}</a></li>
+                        <li class="page-item" ng-class="{disabled:pageOperations==operations.totalPages-1}">
+                        <a class="page-link" ng-click="getOperations(pageOperations+1)">Suivant</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="card-footer text-muted">
+                
+            </div>
+        </div>
+    </div>
+</div>

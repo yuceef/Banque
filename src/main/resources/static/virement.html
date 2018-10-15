@@ -1,0 +1,28 @@
+<div class="col-md-6 offset-md-3 mt-5">
+        <div class="card text-center">
+            <div class="card-header">
+                    Virement
+            </div>
+            <div class="text-justify card-body col-md-8 offset-md-2">
+                <h6>Code compte 1: </h6>
+                <p>
+                    <input class="form-control" type="text" ng-model="code1" required />
+                </p>
+                <div>
+                <h6>Code compte 2: </h6>
+                <p>
+                    <input class="form-control" type="text" ng-model="code2" required />
+                </p>
+                <h6>Montant: </h6>
+                <p>
+                    <input class="form-control" type="text" ng-model="montant" required />
+                </p>
+                <div>
+                    <button class="btn btn-info" onclick="return confirm('Etes vous sure?')" ng-click="virement()" >Ajouter</button>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                
+            </div>
+        </div>
+    </div>
